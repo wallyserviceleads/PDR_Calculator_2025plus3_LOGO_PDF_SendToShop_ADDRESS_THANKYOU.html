@@ -275,7 +275,8 @@ function calc(){
   const factorChecks = Array.from(document.querySelectorAll('.factor:checked'));
   const panelKey = (document.getElementById('panelPick').value || 'door');
   const riHours = panelHours[panelKey] || 0;
-  const extras = document.getElementById('polishAdd').checked ? 1 : 0;
+  const extraCost = document.getElementById('polishAdd').checked ? POLISH_PROTECT_COST : 0;
+
 
   // Base for 2025
   let base2025 = 0, used='length';
@@ -290,7 +291,7 @@ function calc(){
   const pdrTotal = base2025 * (1 + pct/100);
 
   const riCost = riHours * LABOR_RATE;
-  const extraCost = extras ? LABOR_RATE : 0;
+
   const total = pdrTotal + riCost + extraCost;
 
   // Range
