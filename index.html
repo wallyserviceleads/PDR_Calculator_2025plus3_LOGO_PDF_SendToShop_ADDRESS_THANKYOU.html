@@ -4,75 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PDR Estimate • Dark v2 (2025 Send to Shop)</title>
-  <style>
-    :root{
-      --bg:#000000;
-      --card:#0b0b0b;
-      --muted:#9CA3AF;
-      --text:#ffffff;
-      --accent:#FA0000;
-      --ring: rgba(250,0,0,.2);
-      --pill:#111827;
-      --outline: rgba(255,255,255,.08);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      line-height:1.45;
-    }
-    .wrap{max-width:1000px;margin:24px auto;padding:0 16px}
-    header.brand{display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap}
-    .logo{
-      width:56px;height:56px;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;
-      background:#111;border:1px solid var(--outline)
-    }
-    .logo img{width:100%;height:100%;object-fit:cover}
-    h1{margin:0;font-size:22px;font-weight:800;letter-spacing:-.2px}
-    .badge{background:var(--accent);color:#fff;padding:6px 10px;border-radius:999px;font-weight:800;letter-spacing:.2px}
-    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-    .grid{display:grid;gap:14px;grid-template-columns:repeat(12,1fr)}
-    .col-12{grid-column:span 12}.col-8{grid-column:span 8}.col-6{grid-column:span 6}.col-4{grid-column:span 4}.col-3{grid-column:span 3}
-    @media(max-width:900px){.col-8,.col-6,.col-4,.col-3{grid-column:span 12}}
-    .card{
-      background:var(--card);border-radius:16px;padding:16px;border:1px solid var(--outline);box-shadow:0 10px 30px rgba(0,0,0,.35)
-    }
-    .note{background:#101318;border:1px solid var(--outline);border-radius:12px;padding:10px;color:#e5e7eb}
-    label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:6px}
-    input[type="number"],input[type="text"],input[type="email"],input[type="tel"],select{
-      width:100%;background:#0d0d0d;border:1px solid var(--outline);border-radius:12px;padding:12px 12px;color:var(--text);
-      outline:none;font-size:16px;transition:border-color .15s,box-shadow .15s
-    }
-    input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 6px var(--ring)}
-    .chip{display:inline-flex;align-items:center;gap:8px;background:#0d0d0d;padding:10px 12px;border-radius:999px;border:1px solid var(--outline);font-size:14px;cursor:pointer}
-    .help{font-size:12px;color:var(--muted)}
-    .error{font-size:12px;color:var(--accent);margin-top:4px}
-    button{
-      appearance:none;border:0;background:var(--accent);color:white;padding:12px 16px;border-radius:12px;font-weight:800;font-size:16px;
-      cursor:pointer;box-shadow:0 8px 22px rgba(250,0,0,.25)
-    }
-    button.secondary{background:#111827;box-shadow:none;border:1px solid var(--outline)}
-    .result{background:#0f1220;color:#e5e7eb;border-radius:16px;padding:16px;border:1px solid rgba(255,255,255,.06)}
-    .result strong{color:#fff}
-    .pill{display:inline-block;padding:2px 8px;background:#101318;border:1px solid var(--outline);border-radius:999px;font-size:12px;margin-right:6px}
-    .divider{height:1px;background:var(--outline);margin:16px 0}
-    .success{display:none;margin-top:10px;padding:10px;border-radius:10px;background:#0c1f12;border:1px solid rgba(16,185,129,.3);color:#a7f3d0}
-    /* Print styles for the PDF summary */
-    @media print{
-      body{background:white;color:#111}
-      .no-print{display:none!important}
-      .print-sheet{display:block!important}
-    }
-    .print-sheet{display:none;background:white;color:#111;padding:24px;max-width:800px;margin:0 auto}
-    .print-header{display:flex;gap:12px;align-items:center;border-bottom:2px solid #e5e7eb;padding-bottom:12px;margin-bottom:16px}
-    .print-header img{width:64px;height:64px;object-fit:contain}
-    .print-title{font-size:22px;font-weight:800}
-    .kv{display:grid;grid-template-columns:180px 1fr;gap:8px;margin-top:8px}
-    .kv div{padding:6px 8px;background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px}
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="wrap">
@@ -202,7 +134,75 @@
     <p style="margin-top:16px;font-size:12px;color:#555">Estimate is for non‑hail PDR based on customer inputs. Final pricing may vary after in‑person evaluation.</p>
   </div>
 
-<script>
+<script src="app.js"></script>
+</body>
+</html>
+:root{
+      --bg:#000000;
+      --card:#0b0b0b;
+      --muted:#9CA3AF;
+      --text:#ffffff;
+      --accent:#FA0000;
+      --ring: rgba(250,0,0,.2);
+      --pill:#111827;
+      --outline: rgba(255,255,255,.08);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      line-height:1.45;
+    }
+    .wrap{max-width:1000px;margin:24px auto;padding:0 16px}
+    header.brand{display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+    .logo{
+      width:56px;height:56px;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;
+      background:#111;border:1px solid var(--outline)
+    }
+    .logo img{width:100%;height:100%;object-fit:cover}
+    h1{margin:0;font-size:22px;font-weight:800;letter-spacing:-.2px}
+    .badge{background:var(--accent);color:#fff;padding:6px 10px;border-radius:999px;font-weight:800;letter-spacing:.2px}
+    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .grid{display:grid;gap:14px;grid-template-columns:repeat(12,1fr)}
+    .col-12{grid-column:span 12}.col-8{grid-column:span 8}.col-6{grid-column:span 6}.col-4{grid-column:span 4}.col-3{grid-column:span 3}
+    @media(max-width:900px){.col-8,.col-6,.col-4,.col-3{grid-column:span 12}}
+    .card{
+      background:var(--card);border-radius:16px;padding:16px;border:1px solid var(--outline);box-shadow:0 10px 30px rgba(0,0,0,.35)
+    }
+    .note{background:#101318;border:1px solid var(--outline);border-radius:12px;padding:10px;color:#e5e7eb}
+    label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:6px}
+    input[type="number"],input[type="text"],input[type="email"],input[type="tel"],select{
+      width:100%;background:#0d0d0d;border:1px solid var(--outline);border-radius:12px;padding:12px 12px;color:var(--text);
+      outline:none;font-size:16px;transition:border-color .15s,box-shadow .15s
+    }
+    input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 6px var(--ring)}
+    .chip{display:inline-flex;align-items:center;gap:8px;background:#0d0d0d;padding:10px 12px;border-radius:999px;border:1px solid var(--outline);font-size:14px;cursor:pointer}
+    .help{font-size:12px;color:var(--muted)}
+    button{
+      appearance:none;border:0;background:var(--accent);color:white;padding:12px 16px;border-radius:12px;font-weight:800;font-size:16px;
+      cursor:pointer;box-shadow:0 8px 22px rgba(250,0,0,.25)
+    }
+    button.secondary{background:#111827;box-shadow:none;border:1px solid var(--outline)}
+    .result{background:#0f1220;color:#e5e7eb;border-radius:16px;padding:16px;border:1px solid rgba(255,255,255,.06)}
+    .result strong{color:#fff}
+    .pill{display:inline-block;padding:2px 8px;background:#101318;border:1px solid var(--outline);border-radius:999px;font-size:12px;margin-right:6px}
+    .divider{height:1px;background:var(--outline);margin:16px 0}
+    .success{display:none;margin-top:10px;padding:10px;border-radius:10px;background:#0c1f12;border:1px solid rgba(16,185,129,.3);color:#a7f3d0}
+    /* Print styles for the PDF summary */
+    @media print{
+      body{background:white;color:#111}
+      .no-print{display:none!important}
+      .print-sheet{display:block!important}
+    }
+    .print-sheet{display:none;background:white;color:#111;padding:24px;max-width:800px;margin:0 auto}
+    .print-header{display:flex;gap:12px;align-items:center;border-bottom:2px solid #e5e7eb;padding-bottom:12px;margin-bottom:16px}
+    .print-header img{width:64px;height:64px;object-fit:contain}
+    .print-title{font-size:22px;font-weight:800}
+    .kv{display:grid;grid-template-columns:180px 1fr;gap:8px;margin-top:8px}
+    .kv div{padding:6px 8px;background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px}
 // --- Brand & contact via URL params ---
 const qp = new URLSearchParams(location.search);
 const brand = qp.get('brand') || 'Columbia Dent Company';
@@ -327,50 +327,6 @@ function panelName(key){
 }
 
 document.getElementById('calcBtn').addEventListener('click', ()=>{
-  const lengthIn = document.getElementById('lengthIn');
-  const widthIn = document.getElementById('widthIn');
-  const nameIn = document.getElementById('custName');
-  const phoneIn = document.getElementById('custPhone');
-  const emailIn = document.getElementById('custEmail');
-  const lengthErr = document.getElementById('lengthErr');
-  const widthErr = document.getElementById('widthErr');
-  const nameErr = document.getElementById('nameErr');
-  const contactErr = document.getElementById('contactErr');
-
-  [lengthErr,widthErr,nameErr,contactErr].forEach(el=>{ if(el) el.textContent=''; });
-
-  let valid = true;
-  const len = parseFloat(lengthIn.value);
-  if(!(len>0)){
-    lengthErr.textContent = 'Enter a positive number.';
-    valid = false;
-  }
-
-  if(!document.getElementById('widthWrap').hidden){
-    const wid = parseFloat(widthIn.value);
-    if(!(wid>0)){
-      widthErr.textContent = 'Enter a positive number.';
-      valid = false;
-    }
-  }
-
-  if(!nameIn.value.trim()){
-    nameErr.textContent = 'Name is required.';
-    valid = false;
-  }
-
-  if(!phoneIn.value.trim() && !emailIn.value.trim()){
-    contactErr.textContent = 'Provide phone or email.';
-    valid = false;
-  }
-
-  if(!valid){
-    document.getElementById('resultBox').style.display='none';
-    document.getElementById('sendBtn').style.display='none';
-    document.getElementById('printBtn').style.display='none';
-    return;
-  }
-  
   const {base2025,pct,pdrTotal,total,low,high,usedMode,riHours,riCost,extraCost,picked,panelKey} = calc();
   const box = document.getElementById('resultBox');
   box.style.display='block';
@@ -448,6 +404,3 @@ document.getElementById('sendBtn').addEventListener('click', async ()=>{
 
 // Utils
 function hex2rgb(hex){ const h=hex.replace('#',''); const b=parseInt(h,16); return [(b>>16)&255,(b>>8)&255,b&255]; }
-</script>
-</body>
-</html>
