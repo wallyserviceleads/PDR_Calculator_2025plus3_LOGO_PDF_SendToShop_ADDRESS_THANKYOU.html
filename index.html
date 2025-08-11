@@ -49,6 +49,7 @@
     input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 6px var(--ring)}
     .chip{display:inline-flex;align-items:center;gap:8px;background:#0d0d0d;padding:10px 12px;border-radius:999px;border:1px solid var(--outline);font-size:14px;cursor:pointer}
     .help{font-size:12px;color:var(--muted)}
+    .error{font-size:12px;color:var(--accent);margin-top:4px}
     button{
       appearance:none;border:0;background:var(--accent);color:white;padding:12px 16px;border-radius:12px;font-weight:800;font-size:16px;
       cursor:pointer;box-shadow:0 8px 22px rgba(250,0,0,.25)
@@ -98,11 +99,13 @@
           <div class="row" style="margin-top:8px">
             <div style="min-width:160px;flex:1">
               <label for="lengthIn">Length (inches)</label>
-              <input type="number" id="lengthIn" min="1" step="0.1" placeholder="e.g., 2.5" />
+              <input type="number" id="lengthIn" min="1" step="1.0" placeholder="e.g., 2.0" required/>
+              <div class="error" id="lengthErr"></div>
             </div>
             <div style="min-width:160px;flex:1" id="widthWrap" hidden>
               <label for="widthIn">Width (inches)</label>
-              <input type="number" id="widthIn" min="1" step="0.1" placeholder="e.g., 3.0" />
+              <input type="number" id="widthIn" min="1" step="1.0" placeholder="e.g., 3.0" required/>
+              <div class="error" id="widthErr"></div>
             </div>
           </div>
         </div>
@@ -155,9 +158,11 @@
 
         <div class="col-4">
           <label>Contact (optional – helps us follow up)</label>
-          <input type="text" id="custName" placeholder="Name" style="margin-bottom:8px"/>
-          <input type="tel" id="custPhone" placeholder="Phone" style="margin-bottom:8px"/>
-          <input type="email" id="custEmail" placeholder="Email"/>
+          <input type="text" id="custName" placeholder="Name" style="margin-bottom:8px" required/>
+          <div class="error" id="nameErr"></div>
+          <input type="tel" id="custPhone" placeholder="Phone" style="margin-bottom:8px" required/>
+          <input type="email" id="custEmail" placeholder="Email" required/>
+          <div class="error" id="contactErr"></div>
         </div>
 
         <div class="col-12 row no-print" id="actionRow" style="margin-top:6px">
@@ -322,6 +327,50 @@ function panelName(key){
 }
 
 document.getElementById('calcBtn').addEventListener('click', ()=>{
+  const lengthIn = document.getElementById('lengthIn');
+  const widthIn = document.getElementById('widthIn');
+  const nameIn = document.getElementById('custName');
+  const phoneIn = document.getElementById('custPhone');
+  const emailIn = document.getElementById('custEmail');
+  const lengthErr = document.getElementById('lengthErr');
+  const widthErr = document.getElementById('widthErr');
+  const nameErr = document.getElementById('nameErr');
+  const contactErr = document.getElementById('contactErr');
+
+  [lengthErr,widthErr,nameErr,contactErr].forEach(el=>{ if(el) el.textContent=''; });
+
+  let valid = true;
+  const len = parseFloat(lengthIn.value);
+  if(!(len>0)){
+    lengthErr.textContent = 'Enter a positive number.';
+    valid = false;
+  }
+
+  if(!document.getElementById('widthWrap').hidden){
+    const wid = parseFloat(widthIn.value);
+    if(!(wid>0)){
+      widthErr.textContent = 'Enter a positive number.';
+      valid = false;
+    }
+  }
+
+  if(!nameIn.value.trim()){
+    nameErr.textContent = 'Name is required.';
+    valid = false;
+  }
+
+  if(!phoneIn.value.trim() && !emailIn.value.trim()){
+    contactErr.textContent = 'Provide phone or email.';
+    valid = false;
+  }
+
+  if(!valid){
+    document.getElementById('resultBox').style.display='none';
+    document.getElementById('sendBtn').style.display='none';
+    document.getElementById('printBtn').style.display='none';
+    return;
+  }
+  
   const {base2025,pct,pdrTotal,total,low,high,usedMode,riHours,riCost,extraCost,picked,panelKey} = calc();
   const box = document.getElementById('resultBox');
   box.style.display='block';
