@@ -333,7 +333,7 @@ document.getElementById('calcBtn').addEventListener('click', ()=>{
       <div class="pill">${usedMode==='area'?'Square-Inch':'Longest'}</div>
     </div>
     <div class="divider"></div>
-    <div><strong>Base (2025 +3%):</strong> ${money(base2025)} • <strong>Upcharges on base:</strong> +${pct}%</div>
+    <div><strong>Base:</strong> ${money(base2025)} • <strong>Upcharges on base:</strong> +${pct}%</div>
     <div><strong>R&I:</strong> ${panelName(panelKey)} (~${riHours.toFixed(1)}h @ $${LABOR_RATE}/hr = ${money(riCost)})${extraCost?` • <strong>Polish/Protect:</strong> ${money(extraCost)}`:''}</div>
     ${picked.length?`<div style="margin-top:8px"><strong>Selected factors:</strong> ${picked.map(d=>`<span class="pill">${d}</span>`).join(' ')}</div>`:''}
   `;
