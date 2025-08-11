@@ -21,7 +21,8 @@
 
     <div class="card">
       <div class="grid">
-        <div class="col-8">
+        <div id="dentStep" style="display:contents;">        
+          <div class="col-8">
           <label>How big is the dent?</label>
           <div class="row" role="group" aria-label="Calculation mode">
             <label class="chip"><input type="radio" name="mode" value="length" checked/> Longest measurement</label>
@@ -88,19 +89,25 @@
           </div>
         </div>
 
-        <div class="col-4">
-          <label>Contact (optional – helps us follow up)</label>
-          <input type="text" id="custName" placeholder="Name" style="margin-bottom:8px" required/>
-          <div class="error" id="nameErr"></div>
-          <input type="tel" id="custPhone" placeholder="Phone" style="margin-bottom:8px" required/>
-          <input type="email" id="custEmail" placeholder="Email" required/>
+         <div class="col-12 row no-print" style="margin-top:6px">
+          <button id="calcBtn">Get My Estimate</button>
+        </div>
           <div class="error" id="contactErr"></div>
         </div>
 
-        <div class="col-12 row no-print" id="actionRow" style="margin-top:6px">
-          <button id="calcBtn">Get My Estimate</button>
-          <button class="secondary" id="sendBtn" title="Send to Shop" style="display:none">Send to Shop</button>
-          <button class="secondary" id="printBtn" title="Download PDF / Print" style="display:none">Download PDF / Print</button>
+        <div id="contactStep" style="display:none;">
+          <div class="col-4">
+            <label>Contact (optional – helps us follow up)</label>
+            <input type="text" id="custName" placeholder="Name" style="margin-bottom:8px"/>
+            <input type="tel" id="custPhone" placeholder="Phone" style="margin-bottom:8px"/>
+            <input type="email" id="custEmail" placeholder="Email"/>
+          </div>
+
+          <div class="col-12 row no-print" id="actionRow" style="margin-top:6px">
+            <button id="seeEstimateBtn">See My Estimate</button>
+            <button class="secondary" id="sendBtn" title="Send to Shop" style="display:none">Send to Shop</button>
+            <button class="secondary" id="printBtn" title="Download PDF / Print" style="display:none">Download PDF / Print</button>
+          </div>
         </div>
 
         <div class="col-12">
@@ -325,7 +332,7 @@ function panelName(key){
   })[key] || key;
 }
 
-document.getElementById('calcBtn').addEventListener('click', ()=>{
+function renderEstimate(){
   const {base2025,pct,pdrTotal,total,low,high,usedMode,riHours,riCost,extraCost,picked,panelKey} = calc();
   const box = document.getElementById('resultBox');
   box.style.display='block';
@@ -344,8 +351,32 @@ document.getElementById('calcBtn').addEventListener('click', ()=>{
     ${picked.length?`<div style="margin-top:8px"><strong>Selected factors:</strong> ${picked.map(d=>`<span class="pill">${d}</span>`).join(' ')}</div>`:''}
   `;
 });
+}
 
-// PRINT / PDF
+document.getElementById('calcBtn').addEventListener('click', ()=>{
+  const name = document.getElementById('custName').value.trim();
+  const phone = document.getElementById('custPhone').value.trim();
+  const email = document.getElementById('custEmail').value.trim();
+  if(!name || !phone || !email){
+    document.getElementById('dentStep').style.display='none';
+    document.getElementById('contactStep').style.display='contents';
+    return;
+  }
+  renderEstimate();
+});
+
+document.getElementById('seeEstimateBtn').addEventListener('click', ()=>{
+  const name = document.getElementById('custName').value.trim();
+  const phone = document.getElementById('custPhone').value.trim();
+  const email = document.getElementById('custEmail').value.trim();
+  if(!name || !phone || !email){
+    alert('Please enter your name, phone and email.');
+    return;
+  }
+  renderEstimate();
+ }); 
+    
+    // PRINT / PDF
 document.getElementById('printBtn').addEventListener('click', ()=>{
   const {base2025,pct,riHours,riCost,extraCost,low,high,usedMode,panelKey,len,wid} = calc();
   document.getElementById('printLogo').src = logo;
